@@ -9,7 +9,7 @@ class BaseModel {
     {
         if (BaseModel::$s_connection === NULL)
         {
-            $conn = new mysqli("localhost",, "root", "wabjtam", "citygame");
+            $conn = new mysqli("localhost", "root", "wabjtam", "citygame");
             $conn->query('SET NAMES  utf8;'); 
             if (mysqli_connect_errno() !== 0)
             {
@@ -24,8 +24,6 @@ class BaseModel {
 
 
     public function query ($sql) {
-    }
-  
         $rows = array();
         $results = $conn->query($query);
         if ($results)
@@ -39,4 +37,7 @@ class BaseModel {
         }
 
         return $rows;
+    }
+
+
   }

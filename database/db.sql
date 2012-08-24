@@ -1,20 +1,29 @@
+/**
+ * TODO: move the gold and food stuff to a new table city_resources something like
+ */
+
 drop database if exists citygame;
 create database if not exists citygame;
 use citygame;
 
 
-create table if not exists resource_types(id int not null, name varchar(64));
-create unique index idx_resource_type_id on resource_type(id);
+create table if not exists players(
+        id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+        player_name varchar(64),
+        capital_city_id INTEGER(11),
+        created_at INTEGER(11)(11),
+        updated_at INTEGER(11)(11));
 
-create table if not exists lands( id int not null, x int, y int, width int, height int);
-create unique index idx_land_id on land( id);
+create table if not exists cities(
+   id INTEGER(11)EGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    player_id INTEGER(11), city_name varchar(64),
+    food INTEGER(11),
+    gold INTEGER(11),
+    tax_rate float,
+    captil_flag INTEGER(11),
+    people_count INTEGER(11)(11),
+    cor_x, INTEGER DEFAULT '-1',
+    cor_y , INTEGER DEFAULT '-1',
+    created_at INTEGER(11),
+    updated_at INTEGER(11));
 
-create table if not exists city_resources( id int not null, resource_type_id int, resource_amount int);
-create unique index idx_city_resource_id on city_resource(id);
-
-create table if not exists players(id int, name varchar(64), capital_city_id int, created_at int(11), updated_at int(11));
-create unique index idx_player_id on player(id);
-
-create table if not exists cities( id int, player_id int, name varchar(64), food int, gold int, tax_rate float, captil_flag int, land_id int, created_at int(11), updated_at int(11));
-
-create unique index idx_city_id on city(id);

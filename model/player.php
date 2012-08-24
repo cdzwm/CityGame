@@ -1,5 +1,6 @@
 <?php
-require_once ("../include/common.php");
+
+require_once (dirname(__FILE__) . "/../include/common.php");
 
 
 class Player extends BaseModel{
@@ -8,8 +9,13 @@ class Player extends BaseModel{
 	}
 
     public function getPlayerInfo($pid) {
-        $query = "select * from players wherer id = $pid ";
-        return $this->query($query);
+        $query = "select * from players wherer id = $pid  ";
+        $player  = $this->query($query);
+        $query = "select * from cites whwere player_id= $pid"; 
+        $cites = $this->query($query);
+        $player->cites = $cites;
+        
+        return $player;
     }
 
     public function setCapital($player_id, $city_id) {
@@ -25,6 +31,14 @@ class Player extends BaseModel{
             $this->query($sql);
         }
 
+    }
+
+    /**
+     * suppose the city $c alredy created in database
+     */
+    public function createCityOnMap($p, $c, $x ,$y) {
+        $sql = "update cites set cor_x = $x, cor_y = $y where player_id = $p and city_id = $c";
+        $this->query($sql);
     }
   }
 

@@ -1,18 +1,16 @@
 <?php
 
 
-require_once('citygame.php'); 
+require_once(dirname(__FILE__) . "/../include/common.php");
 
-echo "Test Question1:\n"
-
-$mgr = new GameManager(); 
+echo "Test Question1:\n";
 
 
+$pc = new PlayerController();
 
 
-// x: 100 y:100, city:1 player:1
 //add city
-$mgr->addCity(1, 1, 100, 100);
+$pc->addCityOnMap(1, 1, 100, 100);
 
 //get player information
 echo print_r($mgr->getPlayeyCityInfo(1));
@@ -23,7 +21,7 @@ echo print_r($mgr->getCityInfo(1));
 
 $mgr->setCapital(1, 1);
 
-echo print_r($mgr0>getPlayeyCityInfo(1));
+echo print_r($mgr->getPlayeyCityInfo(1));
 
 
 
