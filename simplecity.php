@@ -7,13 +7,38 @@ class City {
 
 class GameObjectManager{
 	private static $gom;
+	
+	private $dbc;
+	private $dbname, $dbuser, $dbpassword, $dbserver, $dbport;
+
 	private function GameObjectManager(){
+		$this->setDatabaseParm();
+	}
+
+	function setDatabaseParm($dbuser="root", $dbpassword="", $dbname = "citygame", $dbserver="localhost", $dbport = "3306"){
+
+		$this->dbname = $dbname;
+		$this->dbuser = $dbuser;
+		$this->dbpassword = $dbpassword;
+		$this->dbserver = $dbserver;
+		$this->dbport = $dbport;
+	}
+
+	public function connect(){
+		$this->dbc = mysql_connect($this->dbserver . ":" . $this->dbport, $this->dbuser, $this->dbpassword);
+		if( !$this->dbc )
+			return false;
+
+		if( !mysql_select_db($this->dbname, $this->dbc)){
+			return false;
+		}
+		
+		return true;
 	}
 
 	public static function getInstance(){
 		if( !isset(self::$gom)){
 			self::$gom = new GameObjectManager();
-			echo "Create GameObjecManager instance.";
 		}
 
 		return self::$gom;
@@ -56,4 +81,6 @@ class Player{
 }
 
 $gom = GameObjectManager::getInstance();
+$gom->setDatabaseParm("root", "emsi217");
+$gom->connect();
 ?>
