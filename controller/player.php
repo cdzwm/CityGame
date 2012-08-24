@@ -1,6 +1,6 @@
 <?php
 
-require_once ("../utils/common.php");
+require_once ("../include/common.php");
 require_once ("../model/player.php");
 
 class PlayerController {
