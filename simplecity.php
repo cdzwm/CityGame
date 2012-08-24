@@ -81,6 +81,6 @@ class Player{
 }
 
 $gom = GameObjectManager::getInstance();
-$gom->setDatabaseParm("root", "emsi217");
+$gom->setDatabaseParm("root", "");
 $gom->connect();
 ?>
