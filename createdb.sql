@@ -20,7 +20,7 @@ create unique index idx_city_resource_id on city_resource(id);
 create table player(id int, name varchar(64), capital_city_id int);
 create unique index idx_player_id on player(id);
 
-create table city( id int, player_id int, name varchar(64), food int, gold int, tax_rate float, captil_flag int, lang_id int);
+create table city( id int, player_id int, name varchar(64), food int, gold int, tax_rate float, captil_flag int, land_id int);
 create unique index idx_city_id on city(id);
 
 insert into object values("resource_type", 1);

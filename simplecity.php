@@ -6,11 +6,12 @@ class City {
 }
 
 class GameObjectManager{
+	static $db;
 	function GameObjectManager(){
 	}
 
-	function getObjectIdByTableName($tbl_name){
-		var $sql_stmt = "select * from object where name = '$tbl_name'";
+	static function getObjectIdByTableName($tbl_name){
+		$sql_stmt = "select * from object where name = '$tbl_name'";
 	}
 
 	function addCity($player_id, $city_id, $city_x, $city_y){
@@ -45,4 +46,6 @@ class Player{
 	function Player(){
 	}
 }
+
+GameObjectManager::getObjectIdByTableName("test");
 ?>
