@@ -22,12 +22,12 @@ class Player extends BaseModel{
         $player = getPlayerInfo($player_id) ; 
         if ($player->captital_city_id > 0)  {
             
-            $this->query("udpate cities set tax_rate = ".NORMAL_TAX_RATE ." where id =" . $player->captital_city_id);
+            $this->query("udpate cities set tax_rate = ".NORMAL_TAX_RATE .", updated_at=now() where id =" . $player->captital_city_id);
         } else {
             //TODO transactions here 
-            $sql = "update cities set tax_rate = ".CAPITAL_TAX_RATE . " where id= $city_id;"; 
+            $sql = "update cities set tax_rate = ".CAPITAL_TAX_RATE . ", updated_at=now() where id= $city_id;"; 
             $this->query($sql);
-            $sql = "update players set $city_id = $city_id where player_id = $player_id";
+            $sql = "update players set $city_id = $city_id, updated_at = now() where player_id = $player_id";
             $this->query($sql);
         }
 

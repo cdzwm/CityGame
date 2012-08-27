@@ -20,7 +20,7 @@ create table if not exists cities(
     food INTEGER(11),
     gold INTEGER(11),
     tax_rate float,
-    captil_flag INTEGER(11),
+    capital_flag INTEGER(11),
     people_count INTEGER(11)(11),
     cor_x, INTEGER DEFAULT '-1',
     cor_y , INTEGER DEFAULT '-1',

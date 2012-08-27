@@ -12,4 +12,8 @@ class City extends BaseModel {
         $this->query($sql);
     }
 
+    public function getCityInfo($cid) {
+        return $this->query("select * from cites where id = $cid");
+    }
+
 }

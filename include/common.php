@@ -5,6 +5,7 @@ define("NORMAL_TAX_RATE", 0.2);
 define("CAPITAL_TAX_RATE", 0.3); //  maybe ? 
 define("CAPITAL_FOOD_SPEED", 10000);
 define("NORMAL_FOOD_SPEED", 1000);
+define("NORMAL_GOLD_SPEED", 100); // maybe? 
 
 set_include_path(get_include_path() . ':' . dirname(dirname(__FILE__)));
 
