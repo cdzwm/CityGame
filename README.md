@@ -1,4 +1,0 @@
-CityGame
-========
-
-CityGame
