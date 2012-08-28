@@ -44,10 +44,14 @@ class SystemController extends BaseController {
     public function generateFood($pid, $cid) {
         $city = $this->cm->getCityInfo($cid) ;
         $speed  =  $city->capital_flag == 1 ? CAPITAL_FOOD_SPEED :NORMAL_FOOD_SPEED;
-
         $this->sm->updateFood($pid, $cid, (int)($speed/60)); 
-
     }
+
+    //call this function every second maybe 
+    public function updateSoldiers($cid) {
+        $this->sm->updateSoldiers($cid); 
+    }
+
 
 
         

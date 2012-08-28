@@ -36,8 +36,19 @@ class BaseModel {
             $results->close();
         }
 
-        return $rows;
+        if (count($rows) == 1)  //DEMO only, simple return an object if only one recond
+            return $rows[0]; 
+        else 
+            return $rows;
     }
 
+    /**
+     * Tansactions query , roll bakc if query faild 
+     * $sqls array of sql
+     * UNDONE
+     */
+    public function trans($sqls) {
+        
+    }
 
   }

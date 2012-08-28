@@ -40,6 +40,22 @@ class Player extends BaseModel{
         $sql = "update cites set cor_x = $x, cor_y = $y where player_id = $p and city_id = $c";
         $this->query($sql);
     }
+
+
+    /**
+     * NOTE: this function is created for  question 2,
+     *       avoid override the old function 
+     */
+    public function getPlayerInfoWithSoldiers($pid) {
+        $player = $this->getPlayerInfo($pid);
+        
+        for($i=0; $i<count($player->cites); $i++) {
+            $sql = "SELECT * FROM soldiers WHERE city_id = "+ $player->cites[$i]; 
+            $player->cites[$i]->soldiers = $this->query($sql);
+        }
+
+        return $player; 
+    }
   }
 
 
