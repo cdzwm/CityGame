@@ -28,7 +28,7 @@ class System extends BaseModel {
     }
 
 
-    //NOTE: the cid 
+    //UNDONE:  cid optinal?? update all 
     public function updateSoldiers($cid) {
 
         $sql = "UPDATE soldiers SET updated_at = now() where id=" .$soldiers[$i];
@@ -53,6 +53,26 @@ class System extends BaseModel {
         $this->query("UPDATE soldiers SET state = 2 WHERE (udpated_at - created_at) >= 50*60 AND soldier_type=3");
             
         $soldersgold_changes = $this->query("SELECT * FROM soldiers WHERE city_id = $cid AND state = 2");
+
+        $total_golds = 0; 
+        for($i =0; $i< count($soldersgold_changes); $i++) {
+            switch ($soldersgold_changes[$i]->soldier_type ) {
+                case 1: 
+                    $total_golds += $soldersgold_changes[$i]->amount*1; 
+                    break; 
+                case 2:
+                $total_golds += $soldersgold_changes[$i]->amount*3; 
+                    break;
+                case 3: 
+                $total_golds += $soldersgold_changes[$i]->amount*; 
+                    break;
+                    
+            }
+
+        }
+
+        $sql = "update cites set gold = gold - $total_golds where id = $cid";
+        $this->query($sql);
 
     }
     
