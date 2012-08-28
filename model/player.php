@@ -56,6 +56,12 @@ class Player extends BaseModel{
 
         return $player; 
     }
+
+    public function getSpeed ($ids) {
+        $sql = "SELECT min(moving_speed) as speed FROM soldiers WHERE id in ($ids)";
+        return $this->query($sql)->speed; 
+    }
+
   }
 
 
