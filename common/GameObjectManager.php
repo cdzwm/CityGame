@@ -1,10 +1,5 @@
 <?php
 
-class City {
-	function City(){
-	}
-}
-
 class GameObjectManager{
 	private static $gom;
 	
@@ -74,13 +69,4 @@ class GameObjectManager{
 	function updateFood( $dt ){
 	}
 }
-
-class Player{
-	function Player(){
-	}
-}
-
-$gom = GameObjectManager::getInstance();
-$gom->setDatabaseParm("root", "");
-$gom->connect();
 ?>
