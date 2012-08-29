@@ -36,8 +36,8 @@ class PlayerController extends BaseController {
         
         $distance = $this->cm->getDiastance($from_city_id, $to_city_id);
 
-        $cor_speed = $this-model->getSpeed(implode(",", $arr_soldiers));
-        $speed = sqrt(2)*cor_speed; 
+        $cor_speed = $this->model->getSpeed(implode(",", $arr_soldiers));
+        $speed = sqrt(2)*$cor_speed; 
         
         $moving_time = $distance/$speed;
         
