@@ -71,6 +71,7 @@ class System extends BaseModel {
 
         }
 
+ 
         $sql = "update cites set gold = gold - $total_golds where id = $cid";
         $this->query($sql);
 

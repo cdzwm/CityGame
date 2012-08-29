@@ -36,7 +36,7 @@ class City extends BaseModel {
         $city1 = $this->getCityInfo($from_id); 
         $city2 = $this->getCityInfo($to_id); 
         
-        return sqrt(pow($city2->cor_x - $city1->cor_x, 2) + pow( $city2->cor_y - $city1->cor_y,2));
+        return sqrt(pow($city2->cor_x - $city1->cor_x , 2) + pow( $city2->cor_y - $city1->cor_y,2));
     }
 
 }

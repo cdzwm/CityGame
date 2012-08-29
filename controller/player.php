@@ -30,8 +30,10 @@ class PlayerController extends BaseController {
     /**
      * arr_soldiers array of soldier id
      */
-    public function attackCity($pid, $from_city_id, $to_city_id , $arr_soldiers) {
+    public function startAttackCity($pid, $from_city_id, $to_city_id , $arr_soldiers) {
         //update the city state to attact status
+        $now  = time(); 
+
         $this->cm->updateState($cid, 1); //1: attack
         
         $distance = $this->cm->getDiastance($from_city_id, $to_city_id);
@@ -41,6 +43,12 @@ class PlayerController extends BaseController {
         
         $moving_time = $distance/$speed;
         
+        //plan target ,maybe stop by players some time ?
+        $plan_target_time =  $now + $moving_time * 60; 
+        $from_city = $his->cm->getCityInfo($from_city_id);
+        $target_city = $this->cm->getCityInfo($to_city_id);
+
+        $this-model-> createAttack($from_city, $to_city,$now , $plan_target_time $distance, $speed);
     }
 
   }

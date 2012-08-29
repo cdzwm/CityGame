@@ -43,4 +43,17 @@ create table if not exists soldiers(
   created_at int(11),
   updated_at int(11));
 
-
+create table if not exists attack_city(
+  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+  from_city_id int(11),
+  to_city_id int(11), 
+  started_time int(11), 
+  moving_speed decimal(8,1),
+  start_x int(11), 
+  start_y ont(11), 
+  tartet_x int(11), 
+  target_y int(11),
+  currrnt_x int(11),
+  current_y int(11),
+  target_time int(11),
+);

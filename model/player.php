@@ -62,6 +62,21 @@ class Player extends BaseModel{
         return $this->query($sql)->speed; 
     }
 
-  }
+
+    public function  createAttack($from_city, $to_city,$start_time, $plan_target_time, $distance, $speed ){
+
+        $sql = <<< EOQ
+            INSERT INTO attack_city  VALUES( 
+                $from_city->id, $to_city->id, '$start_time','$plan_target_time',
+                $speed, {$from_city->cor_x +50}, {$from_city->cor_y +50}, {$to_city->cor_x +50}, 
+                $to_city->cor_y+50, {$from_city->cor_x+50}, {$from_city->cor_y+50}, $plan_target_time);
+                );
+EOQ;
+
+       $this->query($sql); 
+
+    }
+
+}
 
 
