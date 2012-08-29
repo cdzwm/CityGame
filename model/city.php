@@ -39,4 +39,13 @@ class City extends BaseModel {
         return sqrt(pow($city2->cor_x - $city1->cor_x , 2) + pow( $city2->cor_y - $city1->cor_y,2));
     }
 
+    public function udpateCityState($cid, $state) {
+        $this->query("UPDATE cites set state = $state WHERE id=$cid");
+    }
+
+    public function saveAttackResult($attack_result) {
+        $this->query("UPDATE citeis set people_count = people_count - $people_died, gold = gold -$gold , food = food - $food WHERE id = $cid");
+        $this->query("UPDATE citeis set people_count = people_count - $people_died, gold = gold +$gold , food = food + $food WHERE id = $cid");
+    }
+
 }

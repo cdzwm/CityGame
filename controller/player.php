@@ -48,7 +48,7 @@ class PlayerController extends BaseController {
         $from_city = $his->cm->getCityInfo($from_city_id);
         $target_city = $this->cm->getCityInfo($to_city_id);
 
-        $this-model-> createAttack($from_city, $to_city,$now , $plan_target_time $distance, $speed);
+        $this-model-> createAttack($from_city, $to_city,$now , $plan_target_time $distance, $speed, implode(",", $arr_soldiers));
     }
 
   }

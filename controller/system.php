@@ -76,22 +76,51 @@ class SystemController extends BaseController {
                 $is_destination_ok = true; 
 
             if ($attack->target_time >=  $now && $is_destination_ok) { //should start fighting 
+                $this->cm->updateCityState($attack->to_city_id , 1);  // change the city state  and shuld be show a warning to player
                 $this->simulateAttack($attack);
             } else {  //just update the information of attack team 
-                $time_gap = $now - $attack->startd_time; 
+                $time_gap = ($now - $attack->startd_time)/60; 
+                $distanced =  $time_gap * $attack->moving_speed; 
+                $sin = (($attack->target_y - $attack->start_y))/sqrt( pow($attack->target_y - $attack->start_y, 2) + pow($attack->target_x - $attack->start_x, 2));
+                    
+                $x =  $attack->start_x  + $distanced * （1- pow($cos, 2));
+                $y = $attack->start_y + $distanced * $sin;
                 
+                //
+                $attack->current_x = (int)$x;  
+                $attack->current_y = (int)$y; 
+                $this->sm->updateAttackInfo($attack);
                 
             }
-
-            
-            
-            
         }
-
-        
-
     }
 
+    
+    protected function  simulateAttack($attack) {
+        $soldiers = $this->sm->getAttackSoldiersAmount($attack);
         
+        $black_box_result = $this->blackBox($attack, $soldiers);
+
+        $this->cm->saveAttackResult($black_box_result);
+    }
+
+
+    protected function blackBox($$attack, $soldiers) {
+
+        $result = array(); 
+        $result["from_city_died"] = rand(0, $soldiers[0]);
+        $result["to_city_died"] = rand(0, $soliders[1]);
+        
+        
+        $lost_city_id = $result["from_city_soldiers"] >= $result["to_city_soldiers"] ? $attack->to_city_id : $attack->from_city_id;
+
+        $lost_city = $this->cm->getCityInfo($lost_city);
+        $gold = $lost_city->gold;
+        $food = $lost_city->food; 
+        $result["gold"] = rand(0, $gold); 
+        $result["food"] = rand(0, $food);
+
+        return $result;
+    }
     
   }

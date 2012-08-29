@@ -46,6 +46,7 @@ create table if not exists soldiers(
 create table if not exists attack_city(
   id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   from_city_id int(11),
+  attack_soldier_ids  varchar(100), /*DEMO ONLY! should be create a table for this */
   to_city_id int(11), 
   started_time int(11), 
   moving_speed decimal(8,1),

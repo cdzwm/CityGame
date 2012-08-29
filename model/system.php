@@ -76,6 +76,18 @@ class System extends BaseModel {
         $this->query($sql);
 
     }
+
+
+    public function updateAttackInfo($attack) {
+        $this->query("UPDATE attack_city SET current_x = " . $attack->current_x . ", current_y = " . $attack->current_y ." WHERE id = ". $attack->id);
+    }
     
+
+    public function getAttackSoldiersAmount($attack) {
+        $result = array();
+        
+        $result[0] = $this->query("SELECT  sum(amount) FROM soldiers WHERE id in (". $attack->attack_soldier_ids .")");
+        $result[1] = $this->query("SELECT sum(amount) FROM soldiers WHERE city_id = ". $attack->to_city_id ." AND state =0"); //0 : not traning  1: traning
+    }
     
 }
